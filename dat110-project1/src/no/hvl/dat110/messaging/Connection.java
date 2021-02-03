@@ -47,17 +47,19 @@ public class Connection {
 
 	public Message receive() {
 
-		Message message;
+		Message message = new Message();
 		byte[] recvbuf;
 
 		// TODO
 		// read a segment (128 bytes) from the input stream and decapsulate into message
 		// Hint: create a new Message object and use the decapsulate method
-		
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		try {
+			recvbuf = inStream.readNBytes(MessageConfig.SEGMENTSIZE);
+			message.decapsulate(recvbuf);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 		return message;
 
 	}
